@@ -1,0 +1,377 @@
+{% extends "pages/base.html" %}
+
+{% block title %}
+    KeepingSafe.com || Covid - 19 Service Center
+{% endblock title %}
+
+{% block body %}
+<div id="mySidebar" class="sidebar text-uppercase text-center">
+    <a href="javascript:void(0)" class="closebtn" id="cbtn">×</a>
+    <a href="#sec1">Our Mission</a>
+    <a href="#sec5">Safety Tips</a>
+    <a href="#sec2">Team</a>
+    <a href="#sec3">Search Hospital</a>
+    <a href="#sec6">Updates</a>
+    <a href="#sec4">Contact</a>
+    <a href="{% url 'login' %}">Login</a>
+    <a href="{% url 'register' %}">Register</a>
+  </div>
+<div id="main">
+<section id="hero">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 hero-container">
+                 <div class="color-overlay"></div>
+                 <div class="text-white hero-text text-center">
+                    <div id="navbtn" class="ui-widget-content">
+                        <center><button id="navigation"> <i class="fa fa-bars" style="font-size:36px;color: white;"></i> </button></center>
+                     </div>
+                    </i><span class="hero-head text-uppercase"><i class="fa fa-search"></i>KeepingSafe.com</span>
+                    <h2>Helping people in testing times...</h2>
+                    <a href="#sec1"><button class="btn btn-outline-light hero-btn">Explore</button></a>
+                 </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="sec1" class="fadeIn">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 sec-1 text-center">
+                <span class="text-uppercase sec-head">
+                    Our Mission
+                </span>
+                <p class="sec-text mx-5">
+                    We at present are living in such a horrible condition that no one, even in their worst nightmare thought, that they would get locked in their own houses getting drooped and devoid of any human connection. If we contemplate about it on a deeper level, it's as if nature is telling us that how even the smallest of things can make an impact on the whole world, considering that it just started with an anonymous man just slurping some bat soup and ended up making the whole world a human zoo.
+                    Now our team has taken a positive inspiration from this scenario and decided to bestow our technical skills and best efforts in the hopes of ending this misery as soon as possible. Our mission is to make people aware and alert about their surroundings in terms of this Pandemic so that they can be safe and break this chain reaction of spread of this contagious virus, to make hospitals and any kind of remedies which could help prevent or cure the symptoms of the virus, available to as many people as possible. Our team just demands your support in helping to spread this awareness and nothing else.
+                    Together we can and we will, survive and thrive.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="sec5" class="fadeIn">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 text-center faq">
+                <div class="color-overlay-2"></div>
+                <div class="faq-text">
+                    <span class="text-white text-uppercase sec-head">
+                        Safety Tips and Regulations
+                    </span>
+                    <div class="text-white faq-acc">
+                            <div id="accordion">
+                                <div class="card">
+                                  <div class="card-header" id="headingOne">
+                                    <h5 class="mb-0">
+                                      <button class="btn btn-outline-primary" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                        Tip #1
+                                      </button>
+                                    </h5>
+                                  </div>
+                              
+                                  <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                                    <div class="card-body">
+                                        Mask and sanitizers are not a choice; they are the necessities of today’s world. Do wear mask and sanitise/wash hands at proper intervals.  
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="card">
+                                  <div class="card-header" id="headingTwo">
+                                    <h5 class="mb-0">
+                                      <button class="btn btn-outline-primary collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                       Tip #2
+                                      </button>
+                                    </h5>
+                                  </div>
+                                  <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                                    <div class="card-body">
+                                        Maintain proper social distancing and refrain from going outside unless and until it’s something unavoidable.
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="card">
+                                  <div class="card-header" id="headingThree">
+                                    <h5 class="mb-0">
+                                      <button class="btn btn-outline-primary collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                        Tip #3
+                                      </button>
+                                    </h5>
+                                  </div>
+                                  <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                                    <div class="card-body">
+                                        Common symptoms include fever, dry cough, tiredness and in extreme cases shortness of breath and chest pain.
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-header" id="headingFour">
+                                      <h5 class="mb-0">
+                                        <button class="btn btn-outline-primary collapsed" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                          Tip #4
+                                        </button>
+                                      </h5>
+                                    </div>
+                                    <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
+                                      <div class="card-body">
+                                        If having any active symptoms take the necessary steps of quarantining and go for a covid test mandatorily.
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="card">
+                                    <div class="card-header" id="headingFive">
+                                      <h5 class="mb-0">
+                                        <button class="btn btn-outline-primary collapsed" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                                          Tip #5
+                                        </button>
+                                      </h5>
+                                    </div>
+                                    <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordion">
+                                      <div class="card-body">
+                                        Keep a check of your locality and the daily cases. If you are in a red zone do take the mandatory precautions and look for a work from home option.
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="card">
+                                    <div class="card-header" id="headingSix">
+                                      <h5 class="mb-0">
+                                        <button class="btn btn-outline-primary collapsed" data-toggle="collapse" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                                          Tip #6
+                                        </button>
+                                      </h5>
+                                    </div>
+                                    <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#accordion">
+                                      <div class="card-body">
+                                        In case of any emergency do contact the following helpline number of Government of India :  <br>
+                                        <ul style="list-style-type: none;">
+                                            <li>Helpline Number: +91-11-23978046</li>
+                                            <li>Toll Free: 1075</li>
+                                        </ul>
+                                    </div>
+                                    </div>
+                                  </div>
+                              </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+
+<section id="sec2" class="fadeIn">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 sec-2 text-center p-3">
+                <span class="text-uppercase sec-head">
+                    Our Team
+                </span>
+                <div class="row">
+                    <div class="col-lg-3 col-sm-12 p-3">
+                        <div class="row">
+                            <div class="col-12">
+                                <img src="../../static/img/team.png" alt="member" class="team-icon">
+                            </div>
+                            <div class="col-12 mt-5">
+                                <span class="team-head text-uppercase">
+                                    Ayush Bansal
+                                </span>
+                                <p class="text-uppercase team-text"> 
+                                    I am the team leader and I believe in cooperation and proper coordination between team members.
+                                    I am experienced in web development and trying to grow in it with every passing day. I am also learning other skills along side. In this project I am working as a website developer.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-sm-12 p-3">
+                        <div class="row">
+                            <div class="col-12">
+                                <img src="../../static/img/team.png" alt="member" class="team-icon">
+                            </div>
+                            <div class="col-12 mt-5">
+                                <span class="team-head text-uppercase">
+                                    Kunal Nayyar
+                                </span>
+                                <p class="text-uppercase team-text"> 
+                                    I am planning things and managing their execution in this project. I am handling the presentation part and the video script as well. I am good at photo editing  and managing it alongside.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-sm-12 p-3">
+                        <div class="row">
+                            <div class="col-12">
+                                <img src="../../static/img/team.png" alt="member" class="team-icon">
+                            </div>
+                            <div class="col-12 mt-5">
+                                <span class="team-head text-uppercase">
+                                    Anusha Yadav
+                                </span>
+                                <p class="text-uppercase team-text"> 
+                                    I am looking at the creativity aspect of the project and trying to beautify things. I am good at video editing and hence doing the same as well. Data collection and representation is also my part.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-sm-12 p-3">
+                        <div class="row">
+                            <div class="col-12">
+                                <img src="../../static/img/team.png" alt="member" class="team-icon">
+                            </div>
+                            <div class="col-12 mt-5">
+                                <span class="team-head text-uppercase">
+                                    Nikita Singhal
+                                </span>
+                                <p class="text-uppercase team-text"> 
+                                    I am good at front end development and doing the same in the current project. I am also skilled in website development and helping in that as well.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="sec3" class="fadeIn">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 sec-3 text-center">
+                <div class="color-overlay-3"></div>
+                <div class="search-text">
+                <span class="text-white text-uppercase sec-head">
+                    Search Hospitals
+                </span>
+                <div class="search-area px-5">
+                    <form action="{% url 'loadHospitals' %}" method="POST">
+                        {% csrf_token %}
+                        <div class="form-group hosp-form">
+                            <label for="hosp-area" class="text-white text-uppercase">Select your region: </label>
+                            <select name="area" id="hosp-area" class="form-control">
+                                <option value="none" selected disabled> Select--</option>
+                                {% for l in locations %}
+                                <option value="{{l.id}}">{{ l.local }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-outline-light">SEARCH</button>
+                    </form>
+                </div>
+            </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+<section id="sec6" class="fadeIn">
+    <div class="container-fluid">
+        <div class="row px-5 pb-5">
+            <div class="col-12 text-center ca-head"> 
+                <span class="sec-head text-uppercase">Current Afairs (Covid-19)</span>
+                <p class="sec-text">Some updates from our side to keep you updated. <br>Select your state-</p>
+            </div>
+            <div class="col-12 text-center pb-5">
+                <form action="{% url 'loadData' %}" method="POST">
+                    {% csrf_token %}
+                    <div class="form-group">
+                <select name="state" class="form-control">
+                    {% for data in covidData %}
+                    <option value="{{data}}">{{data}}</option>
+                    {% endfor %}
+                </select> 
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-outline-dark">Get Updates</button>
+                    </div>
+            </form>
+            </div>
+            <div class="col-12">
+                <p sec-text>
+                   <b>Note:</b> The data is collected from <a href="https://api.covid19india.org/"> https://api.covid19india.org/ </a>. We do not bear any responsibility for validation of data.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="sec4" class="contact fadeIn">
+     <div class="container-fluid">
+        <div class="row">
+             <div class="col-12 text-center p-5">
+                <span class="contact-head text-uppercase text-white">Contact Us</span>
+                <p class="contact-text">For any information get in touch with our team of experts. <br> For any query fill the contact form provived below.</p>
+             </div>
+             <div class="col-lg-6 col-sm-12 text-center">
+                <div class="row">
+
+             <div class="box col-12">
+                 <div class="icon">
+                    <i class="fa fa-map-marker" aria-hidden="true"></i>
+                 </div>
+                 <div class="text text-uppercase">
+                     <h3>address</h3>
+                     <p>9 MILE STONE<br>RAJNAGAR<br>GREATER NOIDA</p>
+                 </div>
+             </div>
+             <div class="box col-12">
+                <div class="icon">
+                    <i class="fa fa-phone" aria-hidden="true"></i>
+                </div>
+                <div class="text text-uppercase">
+                    <h3>phone</h3>
+                    <p>0131-89547858-3654</p>
+                </div>
+            </div>
+            <div class="box col-12">
+                <div class="icon">
+                    <i class="fa fa-envelope-o" aria-hidden="true"></i>
+                </div>
+                <div class="text text-uppercase">
+                    <h3>email</h3>
+                    <p>alphadevs2@gmail.com</p>
+                </div>
+            </div>
+        </div>
+        </div>
+        <div class="col-lg-6 col-sm-12 contactform p-5">
+            <div class="row">
+                <div class="col-12">
+                  <form action="#" class="contact-form text-center">
+                      {% csrf_token %}
+                      <span class="sec-head">Drop a Query</span>
+                      <div class="inputbox form-group">
+                          <input type="text" name="" placeholder="Enter your name" required class="form-control">
+                      </div>
+                      <div class="inputbox form-group">
+                        <input type="text" name="" class="form-control" placeholder="Enter your email address" required>
+                    </div>
+                    <div class="inputbox form-group">
+                        <textarea class="form-control" rows="5" placeholder="Type something..." required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-outline-dark">Submit</button>
+                    </div>
+                  </form>
+                </div>
+            </div>
+        </div>
+    </div>
+     </div>
+</section>
+<section id="footer" class="fadeIn">
+    <div class="container-fluid bg-dark">
+        <div class="row">
+            <div class="col-lg-11 col-sm-12 p-5 text-center text-uppercase text-white">
+                <p class="sec-text">Made with <i class="fa fa-heart"></i> by AlphaDevs</p>
+            </div>
+            <div class="col-lg-1 col-sm-12 p-5 text-uppercase text-center text-white">
+                <a href="#hero" class="sec-text" id="up-btn"><i class="fa fa-arrow-up"></i></a>
+            </div>
+        </div>
+    </div>
+</section>
+</div>
+{% endblock body %}

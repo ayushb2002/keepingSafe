@@ -1,0 +1,122 @@
+{% extends 'pages/base.html' %}
+
+{% block title %}
+Register || KeepingSafe.com
+{% endblock title %}
+
+{% block body %}
+
+<section id="register">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-11 p-3">
+                <a href="{% url 'index' %}" class="a"> <i class="fa fa-arrow-left"></i> Go Back</a>
+            </div>
+            <div class="col-1 p-3">
+                <a href="{% url 'login' %}" class="a"> <i class="fa fa-arrow-right"></i> Login</a>
+            </div>
+            <div class="col-12">
+                <div class="text-center">
+                    <span class="sec-head" style="text-shadow: 3px 3px #00468C;color: whitesmoke">Register</span>
+                </div>
+                <div class="row">
+                    <div class="col-12 selectArea labelColor text-white">
+                        <div class="form-group">
+                            <label for="loginChoice">Register as:</label>
+                        <select id="loginChoice" class="form-control">
+                            <option value="localUser" selected>Patient</option>
+                            <option value="hospStaff">Hospital Staff</option>
+                            <option value="volunteer">NGO's / Social Workers</option>
+                        </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-12"></div>
+                    <div class="col-lg-4 col-sm-12 p-5 text-white" id="localUser">
+                        <form action="{% url 'signUpUser' %}" method="POST" class="labelColor">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="fname">First Name:</label>
+                                <input type="text" name="fnameReg1" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="lname">Last Name:</label>
+                                <input type="text" name="lnameReg1" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email Address:</label>
+                                <input type="email" name="emailReg1" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone Number:</label>
+                                <input type="tel" name="phoneReg1" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Password:</label>
+                                <input type="password" name="pwdReg1" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-outline-light"><b>Submit</b></button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="col-lg-4 col-sm-12 p-5 text-white" id="hospStaff">
+                        <form action="{% url 'signUpHospital' %}" method="POST" class="labelColor">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="hospName">Hospital Name: </label>
+                                <input type="text" name="hospName" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="hospAddress">Hospital Address: </label> <br>
+                                <textarea name="hospAddress" class="hosparea" rows="5"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="hospPhone">Hospital Contact: </label>
+                                <input type="tel" name="hospPhone" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Password:</label>
+                                <input type="password" name="pwdReg2" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-outline-light"><b>Submit</b></button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-lg-4 col-sm-12 p-5 text-white" id="volunteer">
+                        <form action="{% url 'signUpVol' %}" method="POST" class="labelColor">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="fname">First Name:</label>
+                                <input type="text" name="fname" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="lname">Last Name:</label>
+                                <input type="text" name="lname" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="orgname">Organization (If Any): </label>
+                                <input type="text" name="org" class="form-control" value="--">
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone Number:</label>
+                                <input type="tel" name="volPhone" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Password:</label>
+                                <input type="password" name="pwd" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-outline-light"><b>Submit</b></button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-lg-4 col-sm-12"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock body %}

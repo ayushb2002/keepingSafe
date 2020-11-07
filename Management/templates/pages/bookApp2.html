@@ -1,0 +1,52 @@
+{% extends 'pages/base.html' %}
+
+{% block title %}
+Welcome {{name}}
+{% endblock title %}
+
+{% block body %}
+<section id="welcome">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-12" style="text-align: left;padding: 3%;">
+                        <a href="{% url 'logout' %}" class="a">Logout</a>
+                    </div>
+                </div>                
+            </div>
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-12 p-5">
+                        <div class="row">    
+                            <div class="col-12 text-center text-uppercase">
+                                <span class="sec-head">Book Appointment</span>
+                                <p class="sec-text"> Step - 3 <br> Appointment will be booked by user's name.</p>
+                                <form action="{% url 'bookSlot' %}" method="POST">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="hosp" value="{{hosp}}">
+                                    <input type="hidden" name="doc" value="{{doc}}">
+                                    <input type="hidden" name="sid" value="{{sID}}">
+                                    <div class="form-group">
+                                        <label for="doctor">Select timings: </label>
+                                        <select name="slot" class="form-control">
+                                            <option value="none" selected disabled>Select --</option>
+                                            {% for slot in slots %}
+                                                <option value="{{slot}}">{{slot}}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-outline-dark">Proceed</button>
+                                    </div>
+                                </form>
+                            </div>       
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock body %}

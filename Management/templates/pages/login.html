@@ -1,0 +1,95 @@
+{% extends 'pages/base.html' %}
+
+{% block title %}
+Login || KeepingSafe.com
+{% endblock title %}
+
+{% block body %}
+
+<section id="login">
+    <div class="container-fluid" >
+        <div class="row">
+            <div class="col-11 p-3 ">
+                <a href="{% url 'index' %}" class="a"> <i class="fa fa-arrow-left text-white"></i> Go Back</a>
+            </div>
+            <div class="col-1 p-3 ">
+                <a href="{% url 'register' %}" class="a"> <i class="fa fa-arrow-right text-white"></i> Register</a>
+            </div>
+            <div class="col-12 text-uppercase">
+                <div class="text-center text-uppercase">
+                    <span class="sec-head text-white">Login</span>
+                </div>
+                <div class="row">
+                    <div class="col-12 selectArea">
+                        <div class="form-group text-white">
+                            <label for="loginChoice" >Login as:</label>
+                        <select id="loginChoice" class="form-control">
+                            <option value="localUser" selected>Patient</option>
+                            <option value="hospStaff">Hospital Staff</option>
+                            <option value="volunteer">NGO's / Social Workers</option>
+                        </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-12"></div>
+                    <div class="col-lg-4 col-sm-12 p-5" id="localUser">
+                        <form action="{% url 'signIn' %}" method="POST">
+                            {% csrf_token %}
+                            <div class="form-group text-white">
+                                <label for="email" >Email Address:</label>
+                                <input type="email" name="emailLog" class="form-control">
+                            </div>
+                            <div class="form-group text-white" >
+                                <label for="password">Password:</label>
+                                <input type="password" name="pwd1" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-outline-light"><b>Submit</b></button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="col-lg-4 col-sm-12 p-5 text-white" id="hospStaff">
+                        <form action="{% url 'login_hosp' %}" method="POST">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="hospLog">Hospital ID:</label>
+                                <input type="text" name="hospID" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Password:</label>
+                                <input type="password" name="pwd2" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-outline-light"><b>Submit</b></button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-lg-4 col-sm-12 p-5 text-white" id="volunteer">
+                        <form action="{% url 'login_vol' %}" method="POST">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="username">Volunteer ID:</label>
+                                <input type="text" name="vID" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Password:</label>
+                                <input type="password" name="pwd" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-outline-light"><b>Submit</b></button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-lg-4 col-sm-12"></div>
+                </div>
+                <div class="col-12">
+                    {% if error %}
+                    <span class="sec-head bg-warning">{{error}}</span>
+                    {% endif %}
+                </div>
+            </div> 
+        </div>
+    </div>
+</section>
+
+{% endblock body %}

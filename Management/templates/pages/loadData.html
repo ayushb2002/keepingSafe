@@ -1,0 +1,42 @@
+{% extends "pages/base.html" %}
+
+{% block title %}
+    COVID - 19 UPDATES
+{% endblock title %}
+
+{% block body %}
+    <section>
+        <div class="container-fluid">
+            <div class="row"> 
+                <div class="col-12 m-5">
+                    <a href="{% url 'index' %}"> <i class="fa fa-arrow-left"></i>Go Back</a>
+                </div>
+                <div class="col-3 text-center formatted">
+                   <b> DISTRICT </b><br>
+                    {% for d in dist%}
+                        {{d}} <br>
+                    {% endfor %}
+                    <br>
+                </div>
+                <div class="col-3 text-center formatted">
+                   <b> ACTIVE CASES </b><br>
+                    {% for a in active%}
+                        {{a}} <br>
+                    {% endfor %}
+                </div>
+                <div class="col-3 text-center formatted">
+                   <b> DECEASED </b><br>
+                    {% for d in dead%}
+                        {{d}} <br>
+                    {% endfor %}
+                </div>
+                <div class="col-3 text-center formatted">
+                   <b> RECOVERED </b><br>
+                    {% for r in rec%}
+                        {{r}} <br>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock body %}

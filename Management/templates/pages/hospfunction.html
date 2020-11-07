@@ -1,0 +1,214 @@
+{% extends 'pages/base.html' %}
+
+{% block title %}
+Welcome {{name.name}}
+{% endblock title %}
+
+{% block body %}
+<section id="doctor">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-6" style="text-align: left;padding: 3%;">
+                        <a href="{% url 'logout_hosp' %}" class="a" >Logout</a>
+                    </div>
+                    <div class="col-6" style="text-align: right;padding: 3%;">
+                        <span class="hosp-log-head">Welcome <b> {{name.name}} </b></span>
+                    </div>
+                </div>                
+            </div>
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-4">
+                        <ul>
+                            <li><button type="button" id="addDoc" class="hospChoiceBtn"><i class="fa fa-arrow-right"></i>Add Doctor</button></li>
+                            <li><button type="button" id="viewDoc" class="hospChoiceBtn"><i class="fa fa-arrow-right"></i>View Doctor</button></li>
+                            <li><button type="button" id="addSlot" class="hospChoiceBtn"><i class="fa fa-arrow-right"></i>Add Slot</button></li>
+                            <li><button type="button" id="viewSlot" class="hospChoiceBtn"><i class="fa fa-arrow-right"></i>View Slot</button></li>
+                            <li><button type="button" id="checkApp" class="hospChoiceBtn"><i class="fa fa-arrow-right"></i>Check Appointments</button></li>
+                        </ul>
+                    </div>
+                    <div class="col-8">
+                        <div class="row">
+                            <div class="col-12 text-center text-uppercase" id="choiceArea">
+                                <span class="sec-head">Click on the buttons to continue...</span>
+                                <p class="sec-text"> <b> Remember: </b> Your Hospital ID is: {{hid}}</p>
+                            </div>
+                            <div class="col-12 text-center text-uppercase p-5" id="docArea">
+                                <span class="sec-head">Add a doctor: </span>
+                                <form action="{% url 'addDoc' %}" method="POST">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="hospitalID" value="{{hid}}">
+                                    <div class="form-group">
+                                        <label for="name">Name of doctor:</label>
+                                        <input type="text" name="name" class="form-control" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="spec">Specialization (If any):</label>
+                                        <input type="text" name="spec" class="form-control" value="-">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="slot">Slot</label>
+                                        <select name="slot" class="form-control" required>
+                                            <option value="none" selected disabled>Select --</option>
+                                            {% for slot in slots %}
+                                            <option value="{{slot.id}}">{{slot}}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="fees">Payment:</label>
+                                        <input type="number" name="fees" class="form-control" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-outline-dark">Submit</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="col-12 text-center text-uppercase" id="viewDocArea">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <span class="sec-head">List of doctors: </span>
+                                    </div>
+                                    <div class="col-10">
+                                        <p class="sec-text">
+                                            <ul>
+                                            {% for doc in doctors %}
+                                                <li class="mb-3">{{doc.doctor}} || {{doc.spec}} || Fees: {{doc.fees}}</li>
+                                            {% endfor %}
+                                            </ul>
+                                        </p>
+                                    </div>
+                                    <div class="col-2">
+                                        <ul>
+                                            {% for doc in doctors %}
+                                            <li class="mb-3">
+                                            <form action="{% url 'delDoc' %}" method="POST">
+                                                {% csrf_token %}
+                                                <input type="hidden" name="docID" value="{{doc.id}}">
+                                             <button type="submit" class="btn btn-outline-dark"><i class="fa fa-trash-o"></i></button>
+                                             </form>
+                                            </li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 text-center text-uppercase p-5" id="slotArea">
+                                <span class="sec-head">Add a slot: </span>
+                                <form action="{% url 'addSlot' %}" method="POST">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="hospitalID" value="{{hid}}">
+                                    <div class="form-group">
+                                        <label for="Timing1">Enter Slot 1:</label>
+                                        <input type="text" name="Timing1" class="form-control" placeholder="Example: 6:30PM-8:00PM" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="bookTiming1">Enter maximum appoinments for slot 1:</label>
+                                        <input type="number" name="bookTiming1" class="form-control" placeholder="Example: 15" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="Timing2">Enter Slot 2:</label>
+                                        <input type="text" name="Timing2" class="form-control" placeholder="Example: 6:30PM-8:00PM (Not Necessary)" value="-">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="bookTiming2">Enter maximum appoinments for slot 2:</label>
+                                        <input type="number" name="bookTiming2" class="form-control" placeholder="Example: 15 (Not Necessary)" value="0">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="Timing3">Enter Slot 3:</label>
+                                        <input type="text" name="Timing3" class="form-control" placeholder="Example: 6:30PM-8:00PM (Not Necessary)" value="-">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="bookTiming1">Enter maximum appoinments for slot 3:</label>
+                                        <input type="number" name="bookTiming3" class="form-control" placeholder="Example: 15 (Not Necessary)" value="0">
+                                    </div>
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-outline-dark">Submit</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="col-12 text-center text-uppercase" id="viewSlotArea">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <span class="sec-head">Available Slots: </span>
+                                    </div>
+                                    <div class="col-10">
+                                        <p class="sec-text">
+                                            <ul>
+                                            {% for slot in slots %}
+                                                <li class="mb-3">{{slot}}</li>
+                                            {% endfor %}
+                                            </ul>
+                                        </p>
+                                    </div>
+                                    <div class="col-2">
+                                        <ul>
+                                            {% for slot in slots %}
+                                            <li class="mb-3">
+                                            <form action="{% url 'slotDel' %}" method="POST">
+                                                {% csrf_token %}
+                                                <input type="hidden" name="slotID" value="{{slot.id}}">
+                                             <button type="submit" class="btn btn-outline-dark"><i class="fa fa-trash-o"></i></button>
+                                             </form>
+                                            </li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 text-center text-uppercase" id="appArea">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <span class="sec-head">Check Appointments: </span>
+                                    </div>
+                                    <div class="col-12 p-5">
+                                        <table class="table">
+                                            <thead>
+                                              <tr>
+                                                <th scope="col">Patient Name</th>
+                                                <th scope="col">Handling Doctor</th>
+                                                <th scope="col">Timing</th>
+                                                <th scope="col">Completed</th>
+                                                <th scope="col">Action</th>
+                                              </tr>
+                                            </thead>
+                                            <tbody>
+                                                {% for a in appointments %}
+                                                {% if not a.complete %}
+                                              <tr>
+                                                <td>{{a.patient.first_name}} {{a.patient.last_name}}</td>
+                                                <td>{{a.doc.doctor}}</td>
+                                                <td>{{a.timings}}</td>
+                                                <td>{{a.complete}}</td>
+                                                <td>
+                                                    <form action="{% url 'compApp' %}" method="POST">
+                                                        {% csrf_token %}
+                                                        <input type="hidden" name="aid" value="{{a.id}}">
+                                                        <div class="form-group">
+                                                            <button type="submit" class="btn btn-outline-dark">Done</button>
+                                                        </div>
+                                                    </form>
+                                                </td>
+                                              </tr>
+                                              {% endif %}
+                                              {% endfor %}
+                                            </tbody>
+                                          </table>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="bg-success">{{message}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock body %}

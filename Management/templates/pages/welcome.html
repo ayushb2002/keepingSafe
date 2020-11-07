@@ -1,0 +1,90 @@
+{% extends 'pages/base.html' %}
+
+{% block title %}
+Welcome {{name}}
+{% endblock title %}
+
+{% block body %}
+<section id="welcome">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-6" style="text-align: left;padding: 3%;">
+                        <a href="{% url 'logout' %}" class="a">Logout</a>
+                    </div>
+                    <div class="col-6" style="text-align: right;padding: 3%;">
+                        <span class="hosp-log-head">Welcome <b> {{name}} </b></span>
+                    </div>
+                </div>                
+            </div>
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-4 p-5">
+                        <ul>
+                            <li><button type="button" class="hospChoiceBtn" id="bookApp"><i class="fa fa-arrow-right"></i>Book Appointments</button></li>
+                            <li><button type="button" class="hospChoiceBtn" id="showApp"><i class="fa fa-arrow-right"></i>Show Appointments</button></li>
+                        </ul>
+                    </div>
+                    <div class="col-8 p-5">
+                        <div class="row"> 
+                            <div class="col-12 text-center text-uppercase" id="defaultDisp">
+                                <span class="sec-head">Choose an option...</span>
+                                {% if success %}
+                                <div class="bg-success m-5 p-3">{{success}}</div>
+                                {% endif %}
+                            </div>    
+                            <div class="col-12 text-center text-uppercase" id="bookAppDisp">
+                                <span class="sec-head">Book Appointment</span>
+                                <p class="sec-text"> Step - 1 <br> Appointment will be booked by user's name.</p>
+                                <form action="{% url 'loadHosp' %}" method="POST">
+                                    {% csrf_token %}
+                                    <div class="form-group">
+                                        <label for="doctor">Select a hospital: </label>
+                                        <select name="hosp" class="form-control">
+                                            <option value="none" selected disabled>Select --</option>
+                                            {% for hospital in hospitals %}
+                                                <option value="{{hospital.id}}">{{hospital.name}} || {{hospital.address}}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-outline-dark">Proceed</button>
+                                    </div>
+                                </form>
+                            </div>    
+                            <div class="col-12 text-center text-uppercase" id="showAppDisp">
+                                <span class="sec-head">Show Appointments</span>
+                                <p class="sec-text">
+                                    <table class="table table-hover">
+                                        <thead>
+                                          <tr>
+                                            <th>Name</th>
+                                            <th>Doctor</th>
+                                            <th>Confirmed</th>
+                                            <th>Completed</th>
+                                          </tr>
+                                        </thead>
+                                        <tbody>  
+                                        {% for a in appointments %}
+                                          <tr>
+                                            <td>{{a.patient}}</td>
+                                            <td>{{a.doc}}</td>
+                                            <td>{{a.confirmation}}</td>
+                                            <td>{{a.complete}}</td>
+                                          </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                      </table>
+                                    
+                                </p>
+                            </div>    
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock body %}

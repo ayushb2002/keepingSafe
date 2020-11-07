@@ -1,0 +1,29 @@
+{% extends 'pages/base.html' %}
+
+{% block title %}
+Welcome {{volunteer.first}}
+{% endblock title %}
+
+{% block body %}
+<section id="v">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-6" style="text-align: left;padding: 3%;">
+                <a href="{% url 'logout_vol' %}" class="a">Logout</a>
+            </div>
+            <div class="col-6" style="text-align: right;padding: 3%;">
+                <span class="hosp-log-head">Welcome <b> {{volunteer.first}} {{volunteer.last}} </b></span>
+            </div>
+            <div class="col-12 p-5 text-center">
+                <span class="sec-head">Volunteer Portal</span>
+                <p class="sec-text">
+                    Welcome Volunteer! <br>
+                    Your ID is <b> {{volunteer.id}}</b>. Please remember it as it will be your id for login. <br>
+                    Once you recieve your ID, you will be hearing from us soon.
+                </p>
+                
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock body %}
